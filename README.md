@@ -63,7 +63,7 @@ In File, save
 
 ## GOAL 2: Move robot to auto pose
 
-## STEP 1: Clone navigation repo
+## STEP 1: Cloning navigation repo
 ```
 cd ~/ros2_autodocking_ws/src
 git clone https://github.com/ros-navigation/navigation2.git -b jazzy
