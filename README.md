@@ -59,4 +59,29 @@ params_file:=src/robot_description/config/navigation_params.yaml
 Add Map, select topic as /robot_description
 In File, save
 ```
-- Select 2D Goal Pose - robot should move
+- Select 2D Goal Pose - robot should move<br/>
+
+## GOAL 2: Move robot to auto pose
+
+## STEP 1: Clone navigation repo
+```
+cd ~/ros2_autodocking_ws/src
+git clone https://github.com/ros-navigation/navigation2.git -b jazzy
+```
+
+```
+cd ~/ros2_autodocking_ws/src
+move nav2_docking to src
+remove navigation2 folder
+```
+```
+cd ~/ros2_autodocking_ws
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+```
+```
+cd ~/ros2_autodocking_ws
+source /opt/ros/jazzy/setup.bash
+colcon build --symlink-install
+source install/setup.bash
+```
