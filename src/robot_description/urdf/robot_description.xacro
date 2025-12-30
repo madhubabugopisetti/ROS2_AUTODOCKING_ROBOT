@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<robot name="robot_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find robot_description)/urdf/materials.xacro" />
+	<xacro:include filename="$(find robot_description)/urdf/robot_description.gazebo" />
+
+	<link name="base_link">
+		<inertial>
+			<origin xyz="-0.005885456345497542 -2.142360908145288e-17 0.05578139130205967"
+				rpy="0 0 0" />
+			<mass value="3.600007375840053" />
+			<inertia ixx="0.012571" iyy="0.026733" izz="0.035965" ixy="0.0" iyz="-0.0"
+				ixz="0.000918" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/base_link.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="red" />
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/base_link.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="left_wheel_1">
+		<inertial>
+			<origin xyz="-1.8082757513582237e-14 0.012499999999999983 6.938893903907228e-18"
+				rpy="0 0 0" />
+			<mass value="0.27350263855685797" />
+			<inertia ixx="0.000189" iyy="0.00035" izz="0.000189" ixy="-0.0" iyz="-0.0" ixz="-0.0" />
+		</inertial>
+		<visual>
+			<origin xyz="0.1 -0.11 -0.05" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/left_wheel_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="black" />
+		</visual>
+		<collision>
+			<origin xyz="0.1 -0.11 -0.05" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/left_wheel_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="right_wheel_1">
+		<inertial>
+			<origin xyz="-1.8082757513582237e-14 -0.012499999999999997 6.938893903907228e-18"
+				rpy="0 0 0" />
+			<mass value="0.27350263855685797" />
+			<inertia ixx="0.000189" iyy="0.00035" izz="0.000189" ixy="0.0" iyz="0.0" ixz="-0.0" />
+		</inertial>
+		<visual>
+			<origin xyz="0.1 0.11 -0.05" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/right_wheel_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="black" />
+		</visual>
+		<collision>
+			<origin xyz="0.1 0.11 -0.05" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/right_wheel_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+	<link name="caster_1">
+		<inertial>
+			<origin xyz="-0.04999999999999999 0.0 -0.009374999999999998" rpy="0 0 0" />
+			<mass value="0.25689064927791533" />
+			<inertia ixx="4.2e-05" iyy="4.2e-05" izz="6.4e-05" ixy="0.0" iyz="0.0" ixz="0.0" />
+		</inertial>
+		<visual>
+			<origin xyz="-0.15 0.0 -0.025" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/caster_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="black" />
+		</visual>
+		<collision>
+			<geometry>
+				<sphere radius="0.02" />
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="lidar_1">
+		<inertial>
+			<origin xyz="0.0 5.904170394414034e-18 0.01271329027872195" rpy="0 0 0" />
+			<mass value="1.5115445803512537" />
+			<inertia ixx="0.001005" iyy="0.001005" izz="0.001857" ixy="0.0" iyz="0.0" ixz="0.0" />
+		</inertial>
+		<visual>
+			<origin xyz="0.05 -0.0 -0.125" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/lidar_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="blue" />
+		</visual>
+		<collision>
+			<origin xyz="0.05 -0.0 -0.125" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find robot_description)/meshes/lidar_1.stl"
+					scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="wheel_left_joint" type="continuous">
+		<origin xyz="-0.1 0.11 0.05" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="left_wheel_1" />
+		<axis xyz="0.0 1.0 0.0" />
+	</joint>
+
+	<joint name="wheel_right_joint" type="continuous">
+		<origin xyz="-0.1 -0.11 0.05" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="right_wheel_1" />
+		<axis xyz="0.0 1.0 0.0" />
+	</joint>
+
+	<joint name="Rigid 3" type="fixed">
+		<origin xyz="0.15 0.0 0.025" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="caster_1" />
+	</joint>
+
+	<joint name="Rigid 4" type="fixed">
+		<origin xyz="-0.05 0.0 0.125" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="lidar_1" />
+	</joint>
+	<gazebo>
+		<plugin filename="gz-sim-diff-drive-system"
+			name="gz::sim::systems::DiffDrive">
+			<left_joint>wheel_left_joint</left_joint>
+			<right_joint>wheel_right_joint</right_joint>
+			<wheel_separation>0.20</wheel_separation>
+			<wheel_radius>0.05</wheel_radius>
+			<topic>/cmd_vel</topic>
+			<odom_topic>/odom</odom_topic>
+			<tf_topic>/tf</tf_topic>
+			<frame_id>odom</frame_id>
+			<child_frame_id>base_link</child_frame_id>
+			<odom_publish_frequency>30</odom_publish_frequency>
+		</plugin>
+		<plugin filename="gz-sim-joint-state-publisher-system"
+			name="gz::sim::systems::JointStatePublisher">
+			<topic>joint_states</topic>
+			<joint_name>wheel_left_joint</joint_name>
+			<joint_name>wheel_right_joint</joint_name>
+		</plugin>
+	</gazebo>
+	<gazebo reference="lidar_1">
+		<sensor name="gpu_lidar" type="gpu_lidar">
+			<update_rate>10</update_rate>
+			<topic>scan</topic>
+			<gz_frame_id>lidar_1</gz_frame_id>
+			<frame_id>lidar_1</frame_id>
+			<lidar>
+				<scan>
+					<horizontal>
+						<samples>180</samples>
+						<resolution>1</resolution>
+						<min_angle>-3.14156</min_angle>
+						<max_angle>3.14156</max_angle>
+					</horizontal>
+				</scan>
+				<range>
+					<min>0.05</min>
+					<max>10.0</max>
+					<resolution>0.01</resolution>
+				</range>
+				<noise>
+					<type>gaussian</type>
+					<mean>0.0</mean>
+					<stddev>0.01</stddev>
+				</noise>
+				<frame_id>scan_link</frame_id>
+			</lidar>
+			<always_on>1</always_on>
+			<visualize>true</visualize>
+		</sensor>
+	</gazebo>
+	<gazebo>
+		<plugin
+			filename="gz-sim-sensors-system"
+			name="gz::sim::systems::Sensors">
+			<render_engine>ogre2</render_engine>
+		</plugin>
+	</gazebo>
+	<gazebo reference="left_wheel_1">
+		<mu1>1.0</mu1>
+		<mu2>1.0</mu2>
+	</gazebo>
+	<gazebo reference="right_wheel_1">
+		<mu1>1.0</mu1>
+		<mu2>1.0</mu2>
+	</gazebo>
+	<gazebo reference="caster_1">
+		<mu1>0.0</mu1>
+		<mu2>0.0</mu2>
+	</gazebo>
+
+</robot>
