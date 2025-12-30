@@ -25,6 +25,14 @@ bt_navigator:
       - compute_path_error_code
       - follow_path_error_code
 
+amcl:
+  ros__parameters:
+    use_sim_time: true
+    base_frame_id: base_link
+    odom_frame_id: odom
+    global_frame_id: map
+    scan_topic: scan
+
 controller_server:
   ros__parameters:
     controller_frequency: 20.0
@@ -265,7 +273,6 @@ global_costmap:
         inflation_radius: 0.7
       always_send_full_costmap: True
 
-
 planner_server:
   ros__parameters:
     expected_planner_frequency: 20.0
@@ -347,6 +354,7 @@ collision_monitor:
     state_topic: "collision_monitor_state"
     transform_tolerance: 0.2
     source_timeout: 1.0
+    enabled: false
     base_shift_correction: True
     stop_pub_timeout: 2.0
     # Polygons represent zone around the robot for "stop", "slowdown" and "limit" action types,
@@ -379,17 +387,17 @@ docking_server:
     undock_angular_tolerance: 0.1
     max_retries: 3
     base_frame: "base_link"
-    fixed_frame: "odom"
+    fixed_frame: "map"
+    navigate_to_staging_pose: false
     dock_backwards: false
     dock_prestaging_tolerance: 0.5
-
     # Types of docks
     dock_plugins: ['simple_charging_dock']
     simple_charging_dock:
       plugin: 'opennav_docking::SimpleChargingDock'
       docking_threshold: 0.05
-      staging_x_offset: -0.7
-      use_external_detection_pose: true
+      staging_x_offset: 0.0
+      use_external_detection_pose: false
       use_battery_status: false # true
       use_stall_detection: false # true
 
@@ -403,11 +411,11 @@ docking_server:
 
     # Dock instances
     # The following example illustrates configuring dock instances.
-    # docks: ['home_dock']  # Input your docks here
-    # home_dock:
-    #   type: 'simple_charging_dock'
-    #   frame: map
-    #   pose: [0.0, 0.0, 0.0]
+    docks: ['home_dock']  # Input your docks here
+    home_dock:
+      type: 'simple_charging_dock'
+      frame: map
+      pose: [1.0, 0.0, 0.0]
 
     controller:
       k_phi: 3.0

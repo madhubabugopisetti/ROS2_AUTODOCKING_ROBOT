@@ -49,6 +49,24 @@ def generate_launch_description():
         ),
 
         Node(
+            package='nav2_behaviors',
+            executable='behavior_server',
+            output='screen',
+            parameters=[params]
+        ),
+
+        Node(
+            package='opennav_docking',
+            executable='opennav_docking',
+            output='screen',
+            parameters=[
+                params,
+                {'dock_database': '/home/madhu/ros2_docking_ws/src/robot_description/config/docks.yaml'},
+                {'use_sim_time': True}
+            ]
+        ),
+
+        Node(
             package='nav2_lifecycle_manager',
             executable='lifecycle_manager',
             name='lifecycle_manager_nav',
@@ -61,7 +79,8 @@ def generate_launch_description():
                     'amcl',
                     'controller_server',
                     'planner_server',
-                    'bt_navigator'
+                    'bt_navigator',
+                    'behavior_server'
                 ]
             }]
         ),
