@@ -223,3 +223,6 @@ ros2 lifecycle set /slam_toolbox activate```
 - **Terminal 3**: ```rviz2 -d src/robot_description/config/display.rviz```
 - **Terminal 4**: ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'home_dock'}"
 - **Terminal 4**: ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'work_dock'}"
+
+
+**!!!DONE**

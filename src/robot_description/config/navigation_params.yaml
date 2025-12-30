@@ -388,15 +388,15 @@ docking_server:
     max_retries: 3
     base_frame: "base_link"
     fixed_frame: "map"
-    navigate_to_staging_pose: false
+    navigate_to_staging_pose: true
     dock_backwards: false
     dock_prestaging_tolerance: 0.5
     # Types of docks
     dock_plugins: ['simple_charging_dock']
     simple_charging_dock:
       plugin: 'opennav_docking::SimpleChargingDock'
-      docking_threshold: 0.05
-      staging_x_offset: 0.0
+      docking_threshold: 0.10
+      staging_x_offset: 0.4
       use_external_detection_pose: false
       use_battery_status: false # true
       use_stall_detection: false # true
@@ -412,11 +412,11 @@ docking_server:
     dock_plugins: ['simple_charging_dock']
     simple_charging_dock:
       plugin: 'opennav_docking::SimpleChargingDock'
-      docking_threshold: 0.05
+      docking_threshold: 0.10
       staging_x_offset: 0.0
     controller:
-      k_phi: 5.0
+      k_phi: 6.0
       k_delta: 3.0
       v_linear_min: 0.05
-      v_linear_max: 0.15
+      v_linear_max: 0.12
 

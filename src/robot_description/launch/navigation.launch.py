@@ -68,6 +68,20 @@ def generate_launch_description():
         ),
 
         Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='home_dock_tf',
+            arguments=['1.0', '0.0', '0.0', '0', '0', '0', 'map', 'home_dock_frame']
+        ),
+
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='work_dock_tf',
+            arguments=['3.5', '-1.2', '0.0', '0', '0', '1.57', 'map', 'work_dock_frame']
+        ),
+
+        Node(
             package='nav2_lifecycle_manager',
             executable='lifecycle_manager',
             name='lifecycle_manager_nav',

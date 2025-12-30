@@ -34,10 +34,11 @@ def generate_launch_description():
         ],
     )
 
-    SetEnvironmentVariable(
+    set_gz_path = SetEnvironmentVariable(
         name='GZ_SIM_RESOURCE_PATH',
         value=os.path.join(pkg_robot, 'models')
-    ),
+    )
+
 
 
     # -----------------------------
@@ -123,15 +124,9 @@ def generate_launch_description():
         }]
     )
 
-    home_dock = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        arguments=['1.0', '0.0', '0.0', '0', '0', '0', 'map', 'home_dock_frame']
-    )
-
     return LaunchDescription([
+        set_gz_path,
         gazebo,
-        home_dock,
         robot_state_publisher,
         spawn_robot,
         ros_gz_bridge,
