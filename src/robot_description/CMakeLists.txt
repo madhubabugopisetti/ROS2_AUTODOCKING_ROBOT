@@ -14,6 +14,7 @@ install(
     meshes
     config
     urdf
+    models
   DESTINATION share/${PROJECT_NAME}
 )
 

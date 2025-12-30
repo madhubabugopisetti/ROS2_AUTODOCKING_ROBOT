@@ -60,6 +60,9 @@
         </visual>
       </link>
     </model>
+    <include>
+      <uri>model://home_dock</uri>
+    </include>
     <!-- ADDITIONAL WALLS -->
     <model name="wall_test">
       <static>true</static>

@@ -6,6 +6,7 @@ from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from os.path import join
+from launch.actions import SetEnvironmentVariable
 
 def generate_launch_description():
 
@@ -32,6 +33,12 @@ def generate_launch_description():
             {'use_sim_time': True}
         ],
     )
+
+    SetEnvironmentVariable(
+        name='GZ_SIM_RESOURCE_PATH',
+        value=os.path.join(pkg_robot, 'models')
+    ),
+
 
     # -----------------------------
     # Gazebo Harmonic
@@ -115,8 +122,16 @@ def generate_launch_description():
             'loop_search_maximum_distance': 3.0,
         }]
     )
+
+    home_dock = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['1.0', '0.0', '0.0', '0', '0', '0', 'map', 'home_dock_frame']
+    )
+
     return LaunchDescription([
         gazebo,
+        home_dock,
         robot_state_publisher,
         spawn_robot,
         ros_gz_bridge,

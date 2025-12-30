@@ -2,7 +2,7 @@
 
 # GOAL: Autonomous Docking Navigation
 
-# KILL TERMINALS
+### KILL TERMINALS
 ```
 pkill -f ros2
 pkill -f gazebo
@@ -11,14 +11,14 @@ pkill -f rviz
 clear
 ```
 
-# BUILD
+### BUILD
 ```
 cd ~/ros2_autodocking_ws
 source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
 source ~/ros2_autodocking_ws/install/setup.bash
 ```
-## CLONING
+### CLONING
 ```
 cd
 mkdir -p ros2_autodocking_ws
@@ -26,6 +26,7 @@ cd ~/ros2_autodocking_ws
 git clone https://github.com/madhubabugopisetti/ROS2_AUTODESK_DIFF_ROBOT
 mv src to ros2_autodocking_ws
 ```
+
 ## GOAL 1: Setting up repo for auto_docking
 ## STEP 1:
 ```
@@ -197,3 +198,27 @@ ros2 lifecycle set /slam_toolbox activate```
 - **Terminal 3**: ```rviz2 -d src/robot_description/config/display.rviz```
 - **Terminal 4**: ```
 ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'home_dock', navigate_to_staging_pose: false}"```
+<br/>
+
+## GOAL 3: Navigate to HOME_DOCK
+
+## STEP 1: Add an object into world and render
+- Create a folder models
+- Create another folder inside it home_dock with model.config, model.sdf files
+- Add models to CmakeLists.txt
+- Import model.sdf in world.sdf
+- Add Node and SetEnvironmentVariable in gazebo_slam.launch.py<br/>
+**IMPORTANT**: to make model available for that workspace run ```export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:$(pwd)/install/robot_description/share/robot_description/models``` <br/>
+**VERIFY**: ros2 launch robot_description gazebo_slam.launch.py
+
+## STEP 2: Navigate it
+- [KILL](#kill-terminals)
+- [BUILD](#build)
+- **Terminal 1**:```ros2 launch robot_description gazebo_slam.launch.py```
+- **Terminal 2**: ```
+ros2 lifecycle set /slam_toolbox configure 
+ros2 lifecycle set /slam_toolbox activate```
+- **Terminal 2**: ```ros2 launch robot_description navigation.launch.py```
+- **Terminal 3**: ```ros2 lifecycle set /docking_server configure ros2 lifecycle set /docking_server activate```
+- **Terminal 3**: ```rviz2 -d src/robot_description/config/display.rviz```
+- **Terminal 4**: ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'home_dock'}"
