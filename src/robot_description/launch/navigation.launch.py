@@ -8,6 +8,7 @@ def generate_launch_description():
     pkg = get_package_share_directory('robot_description')
 
     params = os.path.join(pkg, 'config', 'navigation_params.yaml')
+    docksParams = os.path.join(pkg, 'config', 'docks.yaml')
     map_file = os.path.expanduser('~/my_map2.yaml')
 
     return LaunchDescription([
@@ -61,7 +62,7 @@ def generate_launch_description():
             output='screen',
             parameters=[
                 params,
-                {'dock_database': '/home/madhu/ros2_docking_ws/src/robot_description/config/docks.yaml'},
+                {'dock_database': docksParams},
                 {'use_sim_time': True}
             ]
         ),

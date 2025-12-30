@@ -3,3 +3,8 @@ docks:
     type: simple_charging_dock
     frame: map
     pose: [1.0, 0.0, 0.0]
+
+  work_dock:
+    type: simple_charging_dock
+    frame: map
+    pose: [3.5, -1.2, 1.57]

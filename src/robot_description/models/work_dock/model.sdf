@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.8">
-  <model name="home_dock">
+  <model name="work_dock">
     <static>true</static>
 
     <link name="dock_link">

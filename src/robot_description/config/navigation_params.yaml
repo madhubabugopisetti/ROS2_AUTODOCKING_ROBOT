@@ -409,14 +409,11 @@ docking_server:
       external_detection_rotation_yaw: 0.0
       filter_coef: 0.1
 
-    # Dock instances
-    # The following example illustrates configuring dock instances.
-    docks: ['home_dock']  # Input your docks here
-    home_dock:
-      type: 'simple_charging_dock'
-      frame: map
-      pose: [1.0, 0.0, 0.0]
-
+    dock_plugins: ['simple_charging_dock']
+    simple_charging_dock:
+      plugin: 'opennav_docking::SimpleChargingDock'
+      docking_threshold: 0.05
+      staging_x_offset: 0.0
     controller:
       k_phi: 5.0
       k_delta: 3.0

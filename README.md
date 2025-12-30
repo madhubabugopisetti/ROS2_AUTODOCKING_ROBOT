@@ -124,7 +124,7 @@ Node(
     output='screen',
     parameters=[
 		params,
-		{'dock_database': '/home/madhu/ros2_docking_ws/src/robot_description/config/docks.yaml'},
+		{'dock_database': '/home/madhu/ros2_autodocking_ws/src/robot_description/config/docks.yaml'},
 		{'use_sim_time': True}
 	]
 ),
@@ -200,7 +200,7 @@ ros2 lifecycle set /slam_toolbox activate```
 ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'home_dock', navigate_to_staging_pose: false}"```
 <br/>
 
-## GOAL 3: Navigate to HOME_DOCK
+## GOAL 3: Staging to HOME_DOCK && WORK_DOCK
 
 ## STEP 1: Add an object into world and render
 - Create a folder models
@@ -222,3 +222,4 @@ ros2 lifecycle set /slam_toolbox activate```
 - **Terminal 3**: ```ros2 lifecycle set /docking_server configure ros2 lifecycle set /docking_server activate```
 - **Terminal 3**: ```rviz2 -d src/robot_description/config/display.rviz```
 - **Terminal 4**: ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'home_dock'}"
+- **Terminal 4**: ros2 action send_goal /dock_robot nav2_msgs/action/DockRobot "{dock_id: 'work_dock'}"
